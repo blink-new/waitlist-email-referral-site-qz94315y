@@ -195,7 +195,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen w-full bg-black flex flex-col items-center justify-center relative overflow-x-hidden">
-      {/* Vercel-style background grid */}
+      {/* Vercel-style background grid + subtle glow */}
       <div
         aria-hidden
         className="pointer-events-none fixed inset-0 z-0"
@@ -204,27 +204,32 @@ export default function App() {
             "radial-gradient(circle at 50% 0%, #fff2 0%, #0000 70%), repeating-linear-gradient(90deg, #222 0 1px, transparent 1px 80px), repeating-linear-gradient(180deg, #222 0 1px, transparent 1px 80px)",
         }}
       />
+      <div className="pointer-events-none fixed inset-0 z-0" style={{
+        background: "radial-gradient(ellipse 80% 60% at 50% 0%, #fff1 0%, #0000 100%)"
+      }} />
       <main className="relative z-10 flex flex-col min-h-screen w-full items-center justify-center">
         <header className="w-full flex flex-col items-center pt-24 pb-12">
           <img
             src="https://assets.vercel.com/image/upload/front/favicon/vercel/180x180.png"
             alt="Vercel Logo"
-            className="w-14 h-14 mb-6"
+            className="w-14 h-14 mb-8 drop-shadow-xl"
             draggable={false}
           />
-          <h1 className="text-5xl font-extrabold text-white tracking-tight font-display drop-shadow-sm text-center leading-tight">
+          <h1 className="text-5xl font-extrabold text-white tracking-tight font-display drop-shadow-lg text-center leading-tight">
             Get Early Access
           </h1>
-          <p className="text-gray-400 text-xl text-center mt-4 font-medium max-w-2xl leading-relaxed">
-            Be the first to experience our new platform. <br className="hidden sm:inline" />
-            Join the waitlist and invite friends to move up and unlock exclusive early access.
+          <p className="text-gray-400 text-xl text-center mt-6 font-medium max-w-2xl leading-relaxed">
+            Be the first to experience our new platform.<br className="hidden sm:inline" />
+            <span className="inline-block mt-2 text-white/80 font-semibold tracking-wide">
+              Join the waitlist and invite friends to move up and unlock exclusive early access.
+            </span>
           </p>
         </header>
         <section className="flex-1 flex flex-col items-center justify-center w-full px-4">
           <div className="w-full max-w-lg">
             {step === "form" && (
               <form
-                className="flex flex-col gap-8 animate-fade-in w-full"
+                className="flex flex-col gap-8 animate-fade-in w-full bg-white/5 rounded-2xl shadow-2xl p-8 border border-white/10 backdrop-blur-md"
                 onSubmit={handleSubmit}
                 autoComplete="off"
               >
@@ -260,7 +265,7 @@ export default function App() {
                   type="submit"
                   className={clsx(
                     "w-full py-4 rounded-xl font-bold text-lg transition-all",
-                    "bg-white text-black shadow-xl hover:scale-[1.03] active:scale-95 hover:shadow-2xl",
+                    "bg-gradient-to-r from-white via-gray-200 to-white text-black shadow-xl hover:scale-[1.03] active:scale-95 hover:shadow-2xl",
                     loading && "opacity-60 cursor-not-allowed"
                   )}
                   disabled={loading}
