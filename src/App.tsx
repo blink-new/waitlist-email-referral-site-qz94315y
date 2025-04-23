@@ -205,32 +205,33 @@ export default function App() {
         }}
       />
       <main className="relative z-10 flex flex-col min-h-screen w-full items-center justify-center">
-        <header className="w-full flex flex-col items-center pt-16 pb-8">
+        <header className="w-full flex flex-col items-center pt-24 pb-12">
           <img
             src="https://assets.vercel.com/image/upload/front/favicon/vercel/180x180.png"
             alt="Vercel Logo"
-            className="w-12 h-12 mb-4"
+            className="w-14 h-14 mb-6"
             draggable={false}
           />
-          <h1 className="text-4xl font-extrabold text-white tracking-tight font-display drop-shadow-sm text-center">
-            Join the Waitlist
+          <h1 className="text-5xl font-extrabold text-white tracking-tight font-display drop-shadow-sm text-center leading-tight">
+            Get Early Access
           </h1>
-          <p className="text-gray-300 text-lg text-center mt-2 font-medium max-w-xl">
-            Be the first to know when we launch. Invite friends to move up the list and unlock early access!
+          <p className="text-gray-400 text-xl text-center mt-4 font-medium max-w-2xl leading-relaxed">
+            Be the first to experience our new platform. <br className="hidden sm:inline" />
+            Join the waitlist and invite friends to move up and unlock exclusive early access.
           </p>
         </header>
         <section className="flex-1 flex flex-col items-center justify-center w-full px-4">
-          <div className="w-full max-w-xl">
+          <div className="w-full max-w-lg">
             {step === "form" && (
               <form
-                className="flex flex-col gap-7 animate-fade-in w-full"
+                className="flex flex-col gap-8 animate-fade-in w-full"
                 onSubmit={handleSubmit}
                 autoComplete="off"
               >
                 <div className="flex flex-col gap-2">
                   <label
                     htmlFor="email"
-                    className="text-gray-200 font-semibold text-base"
+                    className="text-gray-200 font-semibold text-lg"
                   >
                     Email Address
                   </label>
@@ -239,7 +240,7 @@ export default function App() {
                     id="email"
                     type="email"
                     className={clsx(
-                      "rounded-xl px-4 py-3 border transition-all outline-none text-lg bg-[#18181b] shadow-sm font-medium focus:shadow-lg focus:bg-black w-full text-white",
+                      "rounded-xl px-5 py-4 border transition-all outline-none text-lg bg-[#18181b] shadow-sm font-medium focus:shadow-lg focus:bg-black w-full text-white",
                       inputError
                         ? "border-red-400 focus:ring-2 focus:ring-red-200"
                         : "border-neutral-800 focus:ring-2 focus:ring-white/30"
@@ -258,7 +259,7 @@ export default function App() {
                 <button
                   type="submit"
                   className={clsx(
-                    "w-full py-3 rounded-xl font-bold text-lg transition-all",
+                    "w-full py-4 rounded-xl font-bold text-lg transition-all",
                     "bg-white text-black shadow-xl hover:scale-[1.03] active:scale-95 hover:shadow-2xl",
                     loading && "opacity-60 cursor-not-allowed"
                   )}
@@ -279,7 +280,7 @@ export default function App() {
             )}
 
             {step === "dashboard" && user && (
-              <div className="flex flex-col gap-10 items-center animate-fade-in w-full py-10">
+              <div className="flex flex-col gap-12 items-center animate-fade-in w-full py-10">
                 <div className="w-full flex flex-col items-center gap-2">
                   <h2 className="text-3xl font-bold text-white text-center font-display drop-shadow-sm mb-2">
                     {justJoined ? "You're on the waitlist!" : "Welcome back!"}
@@ -351,7 +352,7 @@ export default function App() {
             )}
           </div>
         </section>
-        <footer className="w-full text-center text-gray-700 text-xs py-6 mt-auto bg-black/80 border-t border-neutral-900">
+        <footer className="w-full text-center text-gray-700 text-xs py-8 mt-auto bg-black/80 border-t border-neutral-900">
           <span className="text-gray-500">&copy; {new Date().getFullYear()} Waitlist Site. Not affiliated with Vercel.</span>
         </footer>
       </main>
