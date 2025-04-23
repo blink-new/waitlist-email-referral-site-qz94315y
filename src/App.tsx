@@ -194,17 +194,28 @@ export default function App() {
   const total = getWaitlist().length;
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-[#f8fafc] via-[#e0e7ef] to-[#f1f5f9] transition-all duration-700 relative overflow-x-hidden">
-      {/* Decorative Blobs */}
-      <div className="absolute top-0 left-0 w-80 h-80 bg-gradient-to-br from-blue-200 via-indigo-200 to-pink-200 rounded-full opacity-30 blur-3xl pointer-events-none -translate-x-1/3 -translate-y-1/3 z-0" />
-      <div className="absolute bottom-0 right-0 w-72 h-72 bg-gradient-to-br from-pink-200 via-yellow-100 to-blue-100 rounded-full opacity-30 blur-3xl pointer-events-none translate-x-1/4 translate-y-1/4 z-0" />
-      <main className="relative z-10 flex flex-col min-h-screen">
-        {/* Top bar */}
-        <header className="w-full flex flex-col items-center pt-10 pb-6">
-          <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight font-display drop-shadow-sm text-center">
+    <div className="min-h-screen w-full bg-black flex flex-col items-center justify-center relative overflow-x-hidden">
+      {/* Vercel-style background grid */}
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-0 z-0"
+        style={{
+          background:
+            "radial-gradient(circle at 50% 0%, #fff2 0%, #0000 70%), repeating-linear-gradient(90deg, #222 0 1px, transparent 1px 80px), repeating-linear-gradient(180deg, #222 0 1px, transparent 1px 80px)",
+        }}
+      />
+      <main className="relative z-10 flex flex-col min-h-screen w-full items-center justify-center">
+        <header className="w-full flex flex-col items-center pt-16 pb-8">
+          <img
+            src="https://assets.vercel.com/image/upload/front/favicon/vercel/180x180.png"
+            alt="Vercel Logo"
+            className="w-12 h-12 mb-4"
+            draggable={false}
+          />
+          <h1 className="text-4xl font-extrabold text-white tracking-tight font-display drop-shadow-sm text-center">
             Join the Waitlist
           </h1>
-          <p className="text-gray-500 text-lg text-center mt-2 font-medium max-w-xl">
+          <p className="text-gray-300 text-lg text-center mt-2 font-medium max-w-xl">
             Be the first to know when we launch. Invite friends to move up the list and unlock early access!
           </p>
         </header>
@@ -219,7 +230,7 @@ export default function App() {
                 <div className="flex flex-col gap-2">
                   <label
                     htmlFor="email"
-                    className="text-gray-700 font-semibold text-base"
+                    className="text-gray-200 font-semibold text-base"
                   >
                     Email Address
                   </label>
@@ -228,10 +239,10 @@ export default function App() {
                     id="email"
                     type="email"
                     className={clsx(
-                      "rounded-xl px-4 py-3 border transition-all outline-none text-lg bg-[#f8fafc] shadow-sm font-medium focus:shadow-lg focus:bg-white w-full",
+                      "rounded-xl px-4 py-3 border transition-all outline-none text-lg bg-[#18181b] shadow-sm font-medium focus:shadow-lg focus:bg-black w-full text-white",
                       inputError
                         ? "border-red-400 focus:ring-2 focus:ring-red-200"
-                        : "border-gray-200 focus:ring-2 focus:ring-blue-200"
+                        : "border-neutral-800 focus:ring-2 focus:ring-white/30"
                     )}
                     placeholder="you@email.com"
                     value={email}
@@ -241,14 +252,14 @@ export default function App() {
                     required
                   />
                   {inputError && (
-                    <span className="text-red-500 text-xs mt-1">{inputError}</span>
+                    <span className="text-red-400 text-xs mt-1">{inputError}</span>
                   )}
                 </div>
                 <button
                   type="submit"
                   className={clsx(
                     "w-full py-3 rounded-xl font-bold text-lg transition-all",
-                    "bg-gradient-to-r from-blue-500 via-indigo-400 to-pink-400 text-white shadow-xl hover:scale-[1.03] active:scale-95 hover:shadow-2xl",
+                    "bg-white text-black shadow-xl hover:scale-[1.03] active:scale-95 hover:shadow-2xl",
                     loading && "opacity-60 cursor-not-allowed"
                   )}
                   disabled={loading}
@@ -260,7 +271,7 @@ export default function App() {
                   )}
                 </button>
                 {referralParam && (
-                  <div className="text-xs text-blue-500 text-center mt-2">
+                  <div className="text-xs text-blue-400 text-center mt-2">
                     You were invited by a friend!
                   </div>
                 )}
@@ -270,15 +281,15 @@ export default function App() {
             {step === "dashboard" && user && (
               <div className="flex flex-col gap-10 items-center animate-fade-in w-full py-10">
                 <div className="w-full flex flex-col items-center gap-2">
-                  <h2 className="text-3xl font-bold text-gray-900 text-center font-display drop-shadow-sm mb-2">
+                  <h2 className="text-3xl font-bold text-white text-center font-display drop-shadow-sm mb-2">
                     {justJoined ? "You're on the waitlist!" : "Welcome back!"}
                   </h2>
-                  <span className="text-gray-600 text-lg font-medium text-center">
+                  <span className="text-gray-300 text-lg font-medium text-center">
                     Share your link to move up the list:
                   </span>
                   <div className="flex flex-col sm:flex-row items-center gap-2 w-full mt-3">
                     <input
-                      className="flex-1 px-3 py-3 rounded-xl border border-gray-200 bg-[#f8fafc] text-base text-gray-700 select-all min-w-0 shadow-sm font-medium focus:shadow-lg focus:bg-white transition-all"
+                      className="flex-1 px-3 py-3 rounded-xl border border-neutral-800 bg-[#18181b] text-base text-white select-all min-w-0 shadow-sm font-medium focus:shadow-lg focus:bg-black transition-all"
                       value={`${fakeReferralBase}${user.referralCode}`}
                       readOnly
                       onFocus={(e) => e.target.select()}
@@ -289,8 +300,8 @@ export default function App() {
                       className={clsx(
                         "p-3 rounded-xl transition-all",
                         copySuccess
-                          ? "bg-green-100 text-green-600"
-                          : "bg-blue-100 text-blue-600 hover:bg-blue-200"
+                          ? "bg-green-900 text-green-300"
+                          : "bg-neutral-900 text-white hover:bg-neutral-800"
                       )}
                       onClick={handleCopy}
                       aria-label="Copy referral link"
@@ -301,14 +312,14 @@ export default function App() {
                   <div className="flex gap-3 mt-4 flex-wrap w-full justify-center">
                     <button
                       type="button"
-                      className="flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-500 text-white text-base font-semibold shadow hover:bg-blue-600 transition-all"
+                      className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white text-black text-base font-semibold shadow hover:bg-gray-200 transition-all"
                       onClick={handleShareTwitter}
                     >
                       <Twitter size={18} /> Tweet
                     </button>
                     <button
                       type="button"
-                      className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-100 text-gray-700 text-base font-semibold shadow hover:bg-gray-200 transition-all"
+                      className="flex items-center gap-2 px-4 py-2 rounded-xl bg-neutral-900 text-white text-base font-semibold shadow hover:bg-neutral-800 transition-all"
                       onClick={handleShareNative}
                     >
                       <Share2 size={18} /> Share
@@ -316,22 +327,22 @@ export default function App() {
                   </div>
                 </div>
                 <div className="w-full flex flex-col items-center gap-1">
-                  <span className="text-gray-900 font-semibold text-2xl font-display">
+                  <span className="text-white font-semibold text-2xl font-display">
                     {referralCount} {referralCount === 1 ? "referral" : "referrals"}
                   </span>
                   <span className="text-gray-400 text-base">
                     Each friend who joins moves you up!
                   </span>
-                  <div className="mt-2 text-base text-gray-500">
+                  <div className="mt-2 text-base text-gray-400">
                     Your rank:{" "}
-                    <span className="font-bold text-blue-500">
+                    <span className="font-bold text-white">
                       {rank} / {total}
                     </span>
                   </div>
                 </div>
                 <button
                   type="button"
-                  className="mt-4 text-base text-indigo-500 underline hover:text-indigo-700"
+                  className="mt-4 text-base text-white underline hover:text-gray-300"
                   onClick={handleReset}
                 >
                   Join with a different email
@@ -340,8 +351,8 @@ export default function App() {
             )}
           </div>
         </section>
-        <footer className="w-full text-center text-gray-400 text-xs py-6 mt-auto">
-          &copy; {new Date().getFullYear()} Waitlist Site. All rights reserved.
+        <footer className="w-full text-center text-gray-700 text-xs py-6 mt-auto bg-black/80 border-t border-neutral-900">
+          <span className="text-gray-500">&copy; {new Date().getFullYear()} Waitlist Site. Not affiliated with Vercel.</span>
         </footer>
       </main>
       <style>
